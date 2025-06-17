@@ -1,40 +1,42 @@
 pipeline {
-    agent any   // 使用任意可用节点
+    agent any
+
+    environment {
+        PYTHON = 'D:\\test\\Python\\python.exe'
+    }
 
     stages {
-//         stage('Clone Code') {
-//             steps {
-//                 // 克隆 Git 仓库（如果你使用 Pipeline from SCM 则不需要这一步）
-//                 git 'https://github.com/你的用户名/你的仓库.git'
-//             }
-//         }
-
-        stage('Install Dependencies') {
+        stage('拉取代码') {
             steps {
-                // 安装依赖
-                bat '"D:\\test\\Python\\python.exe" -m pip install -r D:\\test\\Python_test\\py_test_4\\requirements.txt'
+                git url: 'https://github.com/huangJy25/aoto-test.git', branch: 'main'
             }
         }
 
-        stage('Run Tests') {
+        stage('安装依赖') {
             steps {
-                // 执行 Pytest 自动化测试
-                bat '"D:\\test\\Python\\python.exe" -m pytest D:\\test\\Python_test\\py_test_4\\TestApi\\ --alluredir=D:\\test\\Python_test\\py_test_4\\allure-results'
+                bat "${env.PYTHON} -m pip install -r requirements.txt"
             }
         }
 
-        stage('Generate Allure Report') {
+        stage('执行测试') {
             steps {
-                // 生成 Allure 报告
-                bat 'allure generate D:\\test\\Python_test\\py_test_4\\allure-results -o D:\\test\\Python_test\\py_test_4\\allure-report --clean'
+                bat "${env.PYTHON} -m pytest TestApi/ --alluredir=allure-results"
             }
         }
 
-        stage('Publish Report') {
+        stage('生成 Allure 报告') {
             steps {
-                // 发布 HTML 报告到 Jenkins 页面（需安装 HTML Publisher Plugin 插件）
-                publishHTML(target: [
-                    reportDir: 'D:\\test\\Python_test\\py_test_4\\allure-report',
+                bat 'allure generate allure-results -o allure-report --clean'
+            }
+        }
+
+        stage('发布 Allure 报告') {
+            steps {
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'allure-report',
                     reportFiles: 'index.html',
                     reportName: 'Allure Report'
                 ])
