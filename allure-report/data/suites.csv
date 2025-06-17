@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","250","test_find_pet_by_id","TestApi","Wed Jun 18 00:01:33 CST 2025","passed","Wed Jun 18 00:01:33 CST 2025","TestApi","test_case_1","",""
+"","1165","test_upload_pet_img","TestApi","Wed Jun 18 00:01:34 CST 2025","passed","Wed Jun 18 00:01:35 CST 2025","TestApi","test_case_1","",""
+"","258","test_delete_pet","TestApi","Wed Jun 18 00:01:35 CST 2025","passed","Wed Jun 18 00:01:36 CST 2025","TestApi","test_case_1","",""
+"","711","test_find_pet_by_status","TestApi","Wed Jun 18 00:01:33 CST 2025","passed","Wed Jun 18 00:01:34 CST 2025","TestApi","test_case_1","",""
+"","278","test_update_pet","TestApi","Wed Jun 18 00:01:35 CST 2025","passed","Wed Jun 18 00:01:35 CST 2025","TestApi","test_case_1","",""
+"","4329","test_create_new_pet","TestApi","Wed Jun 18 00:01:28 CST 2025","passed","Wed Jun 18 00:01:33 CST 2025","TestApi","test_case_1","",""
+"","255","test_update_existing_pet","TestApi","Wed Jun 18 00:01:35 CST 2025","passed","Wed Jun 18 00:01:35 CST 2025","TestApi","test_case_1","",""
